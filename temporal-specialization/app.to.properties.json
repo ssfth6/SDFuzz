@@ -1,0 +1,92 @@
+{
+    "sec-eval-lib-output": "security-evaluation/removedViaLibDebloating.txt",
+    "sec-eval-temporal-output": "security-evaluation/removedViaTemporalSpecialization.txt",
+    "apps": [
+        {
+            "httpd": 
+                {
+                    "enable": "true",
+                    "cfg": {
+                            "direct" : "httpd.apr.svf.conditional.direct.calls.cfg",
+                            "svf" : "httpd.apr.svf.cfg",
+                            "svftype" : "httpd.apr.svf.type.cfg",
+                            "svftypefp" : "httpd.apr.svf.new.type.fp.wglobal.cfg"
+                           },
+                    "master": "main",
+                    "worker": "child_main",
+                    "bininput": "httpd/",
+                    "output": "httpd.syscall.out"
+                },
+            "lighttpd": 
+                {
+                    "enable": "false",
+                    "cfg": {
+                            "direct" : "lighttpd.svf.conditional.direct.calls.cfg",
+                            "svf" : "lighttpd.svf.cfg",
+                            "svftype" : "lighttpd.svf.type.cfg",
+                            "svftypefp" : "lighttpd.svf.new.type.fp.wglobal.cfg"
+                           },
+                    "master": "main",
+                    "worker": "server_main_loop",
+                    "bininput": "lighttpd/",
+                    "output": "lighttpd.syscall.out"
+                },
+            "nginx": 
+                {
+                    "enable": "false",
+                    "cfg": {
+                            "direct" : "nginx.svf.conditional.direct.calls.cfg",
+                            "svf" : "nginx.svf.cfg",
+                            "svftype" : "nginx.svf.type.cfg",
+                            "svftypefp" : "nginx.svf.new.type.fp.wglobal.cfg"
+                           },
+                    "master": "main",
+                    "worker": "ngx_worker_process_cycle",
+                    "bininput": "nginx/",
+                    "output": "nginx.syscall.out"
+                },
+            "memcached": 
+                {
+                    "enable": "false",
+                    "cfg": {
+                            "direct" : "memcached.libevent.svf.conditional.direct.calls.cfg",
+                            "svf" : "memcached.libevent.svf.cfg",
+                            "svftype" : "memcached.svf.type.cfg",
+                            "svftypefp" : "memcached.libevent.svf.new.type.fp.wglobal.cfg"
+                           },
+                    "master": "main",
+                    "worker": "worker_libevent",
+                    "bininput": "memcached/",
+                    "output": "memcached.syscall.out"
+                },
+            "redis-server": 
+                {
+                    "enable": "false",
+                    "cfg": {
+                            "direct" : "redis-server.svf.conditional.direct.calls.cfg",
+                            "svf" : "redis-server.svf.cfg",
+                            "svftype" : "redis-server.svf.type.cfg",
+                            "svftypefp" : "redis-server.svf.new.type.fp.wglobal.cfg"
+                           },
+                    "master": "main",
+                    "worker": "aeMain",
+                    "bininput": "redis/",
+                    "output": "redis.syscall.out"
+                },
+            "bind": 
+                {
+                    "enable": "false",
+                    "cfg": {
+                            "direct" : "bind.libuv.svf.conditional.direct.calls.cfg",
+                            "svf" : "bind.libuv.svf.cfg",
+                            "svftype" : "bind.svf.type.cfg",
+                            "svftypefp" : "bind.libuv.svf.new.type.fp.wglobal.cfg"
+                           },
+                    "master": "main",
+                    "worker": "isc_app_ctxrun",
+                    "bininput": "bind/",
+                    "output": "bind.syscall.out"
+                }
+        }
+    ]
+}
